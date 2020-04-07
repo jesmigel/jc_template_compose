@@ -1,4 +1,4 @@
-.PHONEY: build up down status test
+.PHONEY: build up down status test clean
 
 _DOCKER=docker
 _COMPOSE=$(_DOCKER)-compose
@@ -26,6 +26,19 @@ deploy:
 	@cp -rfp ./requirements $(_TARGET)
 	@cp -rfp ./vol $(_TARGET)
 	@cp -rfp ./docker $(_TARGET)
+
+clean:
+	# Clear docker-compose.yaml
+	@echo "#TEMPLATE" > docker-compose.yaml
+	@
+	# Clean test directories
+	@rm -rf ./docker/*
+	@rm -rf ./vol/*
+	@rm -rf ./requirements/*
+
+test:
+	# Copy Source
+	cp -rfp ./compose/$(_SRC)/* .
 
 status:
 	$(_PS)

@@ -1,0 +1,4 @@
+# Project root folder generated files
+./docker-compose.yaml
+docker/*
+vol/*
