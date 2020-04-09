@@ -8,4 +8,15 @@ services:
     ports:
     - "80:80"
     - "443:443"
-    
+    volumes:
+    - ./vol/nginx/confd:/etc/nginx/conf.d
+    - ./vol/nginx/nginx.conf:/etc/nginx/ginx.conf
+    - ./vol/certbot/conf:/etc/letsencrypt
+    - ./vol/certbot/www:/var/www/certbot
+  certbot:
+    depends_on:
+      - nginx
+    image: certbot/certbot
+    volumes:
+    - ./vol/certbot/conf:/etc/letsencrypt
+    - ./vol/certbot/www:/var/www/certbot 
