@@ -19,13 +19,8 @@ down:
 	$(_DOWN)
 
 deploy:
-	# Copy compose file
-	@cp ./docker-compose.yaml $(_TARGET)
-	
-	# Copy folders
-	@cp -rfp ./requirements $(_TARGET)
-	@cp -rfp ./vol $(_TARGET)
-	@cp -rfp ./docker $(_TARGET)
+	# Copy to Destination
+	cp -rfp ./compose/$(_SRC)/* $(_TARGET)
 
 clean:
 	# Clear docker-compose.yaml
