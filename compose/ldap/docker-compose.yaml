@@ -22,6 +22,8 @@ services:
     - 389
     - 636
     tty: true
+    volumes:
+    - ./data:/etc/ldap/slapd.d
 
   client:
     build:
@@ -31,7 +33,7 @@ services:
     depends_on:
       - server
     environment:
-    - CMD_TEST=ldapwhoami -x -D "dn=admin,dc=server" -h server -w test
+    - CMD_TEST=ldapwhoami -x -D "cn=admin,dc=server" -h server -w test
     - PHPLDAPADMIN_LDAP_HOSTS=server
     - PHPLDAPADMIN_HTTPS=false
     image: osixia/phpldapadmin:0.9.0
